@@ -9,6 +9,13 @@ import { useDriverStore } from "@/store";
 const ConfirmRide = () => {
   const { drivers, selectedDriver, setSelectedDriver } = useDriverStore();
 
+  const handleSelectRide = () => {
+    if (!selectedDriver && drivers?.length > 0) {
+      setSelectedDriver(drivers[0].id);
+    }
+    router.push("/(root)/book-ride");
+  };
+
   return (
     <RideLayout title={"Choose a Rider"} snapPoints={["65%", "85%"]}>
       <FlatList
@@ -17,16 +24,15 @@ const ConfirmRide = () => {
         renderItem={({ item, index }) => (
           <DriverCard
             item={item}
-            selected={selectedDriver!}
+            selected={
+              selectedDriver || (drivers?.length > 0 ? drivers[0].id : 0)
+            }
             setSelected={() => setSelectedDriver(item.id!)}
           />
         )}
         ListFooterComponent={() => (
           <View className="mx-5 mt-10">
-            <CustomButton
-              title="Select Ride"
-              onPress={() => router.push("/(root)/book-ride")}
-            />
+            <CustomButton title="Select Ride" onPress={handleSelectRide} />
           </View>
         )}
       />

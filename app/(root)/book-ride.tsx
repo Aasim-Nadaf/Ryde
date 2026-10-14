@@ -13,9 +13,9 @@ const BookRide = () => {
   const { userAddress, destinationAddress } = useLocationStore();
   const { drivers, selectedDriver } = useDriverStore();
 
-  const driverDetails = drivers?.filter(
-    (driver) => +driver.id === selectedDriver,
-  )[0];
+  const driverDetails =
+    drivers?.filter((driver) => +driver.id === selectedDriver)[0] ||
+    drivers?.[0];
 
   return (
     <StripeProvider

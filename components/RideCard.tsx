@@ -48,7 +48,8 @@ const RideCard = ({ ride }: { ride: Ride }) => {
               Driver
             </Text>
             <Text className="text-md font-JakartaBold">
-              {ride.driver?.first_name || "Assigned"} {ride.driver?.last_name || "Driver"}
+              {ride.driver?.first_name || "Assigned"}{" "}
+              {ride.driver?.last_name || "Driver"}
             </Text>
           </View>
 
